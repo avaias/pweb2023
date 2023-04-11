@@ -37,7 +37,7 @@ public class CadastroUsuarioServlet extends HttpServlet {
 			
 		}else {
 			//Redirecionar o suário para a mesma página de cadastro do usuário
-			req.getRequestDispatcher("cadastroUsuario.html").forward(req , resp);
+			req.getRequestDispatcher("usuarioCadastro.jsp").forward(req , resp);
 			
 		}
 	}
