@@ -28,10 +28,10 @@
             <h1 class="fs-4">Cadastro de Usuário</h1>
             <form action="cadastrarUsuario" method="post" class="d-flex flex-column  p-5">
                 <label for="nome" class="form-label">Nome: </label>
-                <input type="text" name="nome" id="nome" class="form-control" value ="<%= nome %>">
+                <input type="text" name="nome" id="nome" class="form-control" value ="${param.nome}">
 
                 <label for="email" class="form-label">E-mail:</label>
-                <input type="text" name="email" id="email" class="form-control" value = "<%= email %>">
+                <input type="text" name="email" id="email" class="form-control" value = "${param.email}">
 
                 <label for="senha01" class="form-label">Senha:</label>
                 <input type="password" name="senha01" id="senha01" class="form-control">
