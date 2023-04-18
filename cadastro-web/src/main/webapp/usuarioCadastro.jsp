@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri= "http://java.sun.com/jsp/jstl/core" prefix="c" %>
+//FIXME: corrigir a importa√ß√£o da taglib
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -25,7 +29,7 @@
 	
     <main class="container-fluid vh-100 d-flex align-items-center justify-content-center bg-dark">
         <div class="d-flex flex-column justify-content-center align-items-center bg-white border border-5 border-secondary rounded">
-            <h1 class="fs-4">Cadastro de Usu·rio</h1>
+            <h1 class="fs-4">Cadastro de Usu√°rio</h1>
             <form action="cadastrarUsuario" method="post" class="d-flex flex-column  p-5">
                 <label for="nome" class="form-label">Nome: </label>
                 <input type="text" name="nome" id="nome" class="form-control" value ="${param.nome}">
@@ -40,13 +44,13 @@
                 <input type="password" name="senha02" id="senha02" class="form-control">
                 <div class="d-flex align-items-center justify-content-evenly mt-3">
                     <input type="submit" value="Salvar" class="btn btn-success">
-                    <a href="cadastrarUsuario" class="btn btn-primary"> Listar Usu·rio </a>
+                    <a href="cadastrarUsuario" class="btn btn-primary"> Listar Usu√°rio </a>
                     <a href="index.html" class="btn btn-danger">Voltar</a>
                 </div>
             </form>
             <% if((!email.isEmpty()) || (!nome.isEmpty()) ){%>
 	            <div class = "alert alert-danger" role = "alert">
-	        			<%out.print(nome.concat(" as senhas informadas n„o s„o iguais."));%>		
+	        			<%out.print(nome.concat(" as senhas informadas n√£o s√£o iguais."));%>		
 	            </div>
             <%} %>
         </div>
