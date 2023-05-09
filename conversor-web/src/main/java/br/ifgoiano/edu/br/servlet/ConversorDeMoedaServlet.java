@@ -15,36 +15,21 @@ public class ConversorDeMoedaServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String cotacao = req.getParameter("cotacao");
-		String reais = req.getParameter("reais");
+		String cotacao = req.getParameter("cotacao"), reais = req.getParameter("reais");
 		
 		if(cotacao.isEmpty() || reais.isEmpty()) {
 			//Retornar para página de erro
 			resp.sendRedirect("erroDeConversao.jsp");
 		}else {
 			//Calcular o valor em dolar
-			Float vlrCotacao = Float.parseFloat(cotacao);
-			Float vlrReais = Float.parseFloat(reais);
-			
+			Float vlrCotacao = Float.parseFloat(cotacao), vlrReais = Float.parseFloat(reais);
 			Float vlrDolares = vlrReais / vlrCotacao;
-			
-			//Retornar o valor para o usuário
-			resp.getWriter().print(obterHtmlDeMoedaConvertida(vlrReais, vlrDolares));
+			req.setAttribute("cotacao", vlrCotacao);
+			req.setAttribute("reais", vlrReais);
+			req.setAttribute("dolares", vlrDolares);
+			req.getRequestDispatcher("moedaConvertida.jsp").forward(req, resp);
 		}
 	}
 	
-	private String obterHtmlDeMoedaConvertida(Float vlrReais, Float vlrDolares) {
-		String html = new String()
-		.concat("<html>")
-		.concat("<body>")
-			.concat("<p>")
-			.concat("O valor R$ " + vlrReais + " equivale a $ " + vlrDolares + " na contação atual do dólar.")
-			.concat("</p>")
-			.concat("<p>Vindo do Servlet</p>")
-			.concat("<a href=\"index.jsp\">Voltar</a>")
-		.concat("</body>")
-		.concat("</html>");
-		
-		return html;
-	}
+	
 }

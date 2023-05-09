@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1>Conversor de Moedas</h1>
-	<form action="conversorMoeda.jsp">
+	<form action="conversorDeMoeda" method="post">
 	<!-- <form action="conversorDeMoeda" method="post"> -->
 		<label>Cotação do Dólar:</label>
 		<input type="text" name="cotacao">
