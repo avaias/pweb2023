@@ -44,9 +44,9 @@ public class CadastroUsuarioServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		for (Usuario usuario : listaDeUsuario) {
-			System.out.println(usuario.getNome().concat("-").concat(usuario.getEmail()));
-		}
+		req.setAttribute("listaUsuarios", listaDeUsuario);
+		req.getRequestDispatcher("usuarioListagem.jsp").forward(req, resp);
+		
 	}
 	
 	@Override

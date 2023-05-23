@@ -5,6 +5,12 @@ import java.util.Date;
 public class Usuario {
 	private String email = "", senha = "", nome = "";
 	private Date dataNascimento;
+	private static int incremento = 1;
+	private Integer id;
+	
+	public Usuario() {
+		id = incremento++;
+	}
 	
 	public String getEmail() {
 		return email;
@@ -42,5 +48,15 @@ public class Usuario {
 		//FIXME: Implementar a lógica para obter a idade com base na data de nascimento.
 		return 0;
 	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
+	
 	
 }
