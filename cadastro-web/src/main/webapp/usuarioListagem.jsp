@@ -24,7 +24,7 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<a href= "usarioCadastro.jsp" class= "btn btn-primary">Voltar</a>
+	<a href= "usuarioCadastro.jsp" class= "btn btn-primary">Voltar</a>
 	
 </body>
 </html>
