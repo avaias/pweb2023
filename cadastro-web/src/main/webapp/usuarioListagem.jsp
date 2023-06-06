@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+-<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -24,6 +24,7 @@
 			</tr>
 		</c:forEach>
 	</table>
+	<a href= "usarioCadastro.jsp" class= "btn btn-primary">Voltar</a>
 	
 </body>
 </html>
