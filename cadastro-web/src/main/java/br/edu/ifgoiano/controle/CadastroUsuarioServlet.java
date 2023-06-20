@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import br.edu.ifgoiano.controle.entidade.Usuario;
+import br.edu.ifgoiano.repositorio.UsuarioRepositorio;
 
 @WebServlet("/cadastrarUsuario")
 public class CadastroUsuarioServlet extends HttpServlet {
@@ -33,6 +34,8 @@ public class CadastroUsuarioServlet extends HttpServlet {
 			usuario.setNome(nome);
 			usuario.setEmail(email);
 			usuario.setSenha(senha01);
+			UsuarioRepositorio repositorio = new UsuarioRepositorio();
+			
 			listaDeUsuario.add(usuario);
 			
 		}else {
@@ -44,13 +47,20 @@ public class CadastroUsuarioServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setAttribute("listaUsuarios", listaDeUsuario);
+		UsuarioRepositorio repositorio = new UsuarioRepositorio();
+		req.setAttribute("listaUsuarios", repositorio.listarUsuarios());
 		req.getRequestDispatcher("usuarioListagem.jsp").forward(req, resp);
 		
 	}
 	
 	@Override
 	public void destroy() {
+		try {
+			UsuarioRepositorio.conn.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		this.listaDeUsuario.clear();
+		
 	}
 }
