@@ -14,15 +14,6 @@ import br.edu.ifgoiano.repositorio.UsuarioRepositorio;
 
 @WebServlet("/cadastrarUsuario")
 public class CadastroUsuarioServlet extends HttpServlet {
-	
-	//Simulando o banco de dados
-	private List<Usuario> listaDeUsuario;
-	
-	@Override
-	public void init() throws ServletException {
-		this.listaDeUsuario = new ArrayList<Usuario>();
-	}
-	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//Verificar se as senhas são iguais
@@ -35,11 +26,10 @@ public class CadastroUsuarioServlet extends HttpServlet {
 			usuario.setEmail(email);
 			usuario.setSenha(senha01);
 			UsuarioRepositorio repositorio = new UsuarioRepositorio();
-			
-			listaDeUsuario.add(usuario);
+			repositorio.inserirUsuario(usuario);
 			
 		}else {
-			//Redirecionar o suário para a mesma página de cadastro do usuário
+			//Redirecionar o usuário para a mesma página de cadastro do usuário
 			req.getRequestDispatcher("usuarioCadastro.jsp").forward(req , resp);
 			
 		}
@@ -53,14 +43,5 @@ public class CadastroUsuarioServlet extends HttpServlet {
 		
 	}
 	
-	@Override
-	public void destroy() {
-		try {
-			UsuarioRepositorio.conn.close();
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		this.listaDeUsuario.clear();
-		
-	}
+	
 }
