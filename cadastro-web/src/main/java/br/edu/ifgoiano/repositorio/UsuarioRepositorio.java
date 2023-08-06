@@ -48,7 +48,6 @@ public class UsuarioRepositorio {
 		System.out.println(sql);
 		
 		try (Connection conn = this.getConnection(); PreparedStatement pst = conn.prepareStatement(sql.toString());){
-			ResultSet resultSet = pst.executeQuery();
 			pst.setString(1, usuario.getNome());
 			pst.setString(2, usuario.getEmail());
 			pst.setString(3, usuario.getSenha());
