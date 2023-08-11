@@ -29,23 +29,21 @@ public class UsuarioRepositorio {
 				usuario.setEmail(resultSet.getString("email"));
 				usuario.setSenha(resultSet.getString("senha"));
 				usuario.setDataNascimento(resultSet.getDate("data_nascimento"));
-
+				
 				lstUsuarios.add(usuario);
 			}
 
 		} catch (Exception e) {
 			System.out.println("Erro na consulta de usuários!");
 		}
-
+		
 		return lstUsuarios;
 	}
-
+	
 	public void inserirUsuario(Usuario usuario) {
 		
 		StringBuilder sql = new StringBuilder();
 		sql.append("INSERT INTO usuario").append("(nome, email, senha)").append("VALUES (?, ?, ?);");
-		
-		System.out.println(sql);
 		
 		try (Connection conn = this.getConnection(); PreparedStatement pst = conn.prepareStatement(sql.toString());){
 			pst.setString(1, usuario.getNome());
@@ -60,6 +58,28 @@ public class UsuarioRepositorio {
 		}
 	}
 	
+	public Usuario buscarUsuario(String email) {
+		List<Usuario> lstUsuarios = new ArrayList<Usuario>();
+		String sql = "SELECT * FROM usuario WHERE email LIKE '" + email+"'";
+		
+		try (Connection conn = this.getConnection(); PreparedStatement pst = conn.prepareStatement(sql)){
+			ResultSet resultSet = pst.executeQuery();
+
+			while (resultSet.next()) {
+				Usuario usuario = new Usuario();
+				usuario.setEmail(resultSet.getString("email"));
+				usuario.setSenha(resultSet.getString("senha"));
+				
+				lstUsuarios.add(usuario);
+			}
+			//System.out.println("email: " + resultSet.getString("email"));
+		} catch (SQLException e) {
+			System.out.println("Erro ao buscar o usuário");
+			e.printStackTrace();
+		}
+		return lstUsuarios.get(0);
+	}
+	
 	public void alterarUsuario(Usuario usuario) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("UPDATE usuario");
@@ -70,6 +90,9 @@ public class UsuarioRepositorio {
 			pst.setString(1, usuario.getNome());
 			pst.setString(2, usuario.getEmail());
 			pst.setString(3, usuario.getSenha());
+			
+			pst.execute();
+			conn.commit();
 		} catch (SQLException e) {
 			System.out.println("Erro na edição de usuários");
 			e.printStackTrace();

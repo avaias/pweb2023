@@ -22,7 +22,7 @@
 				<td> ${usuario.id} </td>
 				<td> ${usuario.nome} </td>	
 				<td><a href="mailto:${usuario.email}"> ${usuario.email} </a> </td>
-				<td><a class = "btn btn-primary" href = "usuarioAlterar.jsp?usuarioId=${usuario.id}">Editar</a></td>
+				<td><a href = "usuarioAlterar.jsp?usuarioId=${usuario.id}" class = "btn btn-primary">Editar</a></td>
 			</tr>
 		</c:forEach>
 	</table>

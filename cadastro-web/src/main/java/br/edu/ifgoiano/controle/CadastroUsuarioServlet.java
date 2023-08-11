@@ -18,7 +18,7 @@ public class CadastroUsuarioServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//Verificar se as senhas são iguais
 		String nome = req.getParameter("nome"), email = req.getParameter("email") , senha01 = req.getParameter("senha01"), senha02 = req.getParameter("senha02");
-		if( (senha01.equals(senha02)) && !senha01.isBlank()  ) {
+		if(senha01.equals(senha02)) {
 			Usuario usuario = new Usuario();
 			//Redirecionar o usuário para a tela de login
 			resp.sendRedirect("index.html");
@@ -27,7 +27,6 @@ public class CadastroUsuarioServlet extends HttpServlet {
 			usuario.setSenha(senha01);
 			UsuarioRepositorio repositorio = new UsuarioRepositorio();
 			repositorio.inserirUsuario(usuario);
-			
 		}else {
 			//Redirecionar o usuário para a mesma página de cadastro do usuário
 			req.getRequestDispatcher("usuarioCadastro.jsp").forward(req , resp);

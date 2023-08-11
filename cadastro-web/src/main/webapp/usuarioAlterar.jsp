@@ -12,7 +12,7 @@
 	<main class="container-fluid vh-100 d-flex align-items-center justify-content-center bg-dark">
 		<div class="d-flex flex-column justify-content-center align-items-center bg-white border border-5 border-secondary rounded">
 			<h1 class="fs-4">Edição de Usuário</h1>
-			<form action="cadastrarUsuario" method="post" class="d-flex flex-column  p-5">
+			<form action="alterarUsuario" method="post" class="d-flex flex-column  p-5">
 				<label for="nome" class="form-label">Nome: </label> 
 				<input type="text" name="nome" id="nome" class="form-control" value="${param.nome}"> 
 				<label for="email" class="form-label">E-mail:</label> 
@@ -22,6 +22,9 @@
 
 				<label for="senha02" class="form-label">Confirme a sua senha:</label> 
 				<input type="password" name="senha02" id="senha02" class="form-control">
+				
+				<input type="text" name="id" id="id" class="d-none" value="${param.usuarioId}">
+				
 				<div class="d-flex align-items-center justify-content-evenly mt-3">
 					<input type="submit" value="Salvar" class="btn btn-success">
 					<a href="usuarioListagem.jsp" class="btn btn-danger">Voltar</a>
