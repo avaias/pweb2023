@@ -15,12 +15,14 @@
 			<th>ID</th>
 			<th>Nome</th>
 			<th>E-mail</th>
+			<th>#</th>
 		</tr>
 		<c:forEach var = "usuario" items = "${listaUsuarios}" varStatus="id">
 			<tr>
 				<td> ${usuario.id} </td>
 				<td> ${usuario.nome} </td>	
 				<td><a href="mailto:${usuario.email}"> ${usuario.email} </a> </td>
+				<td><a class = "btn btn-primary" href = "usuarioAlterar.jsp?usuarioId=${usuario.id}">Editar</a></td>
 			</tr>
 		</c:forEach>
 	</table>

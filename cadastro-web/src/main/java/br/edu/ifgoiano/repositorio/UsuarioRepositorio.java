@@ -29,17 +29,17 @@ public class UsuarioRepositorio {
 				usuario.setEmail(resultSet.getString("email"));
 				usuario.setSenha(resultSet.getString("senha"));
 				usuario.setDataNascimento(resultSet.getDate("data_nascimento"));
-				
+
 				lstUsuarios.add(usuario);
 			}
 
 		} catch (Exception e) {
 			System.out.println("Erro na consulta de usuários!");
 		}
-		
+
 		return lstUsuarios;
 	}
-	
+
 	public void inserirUsuario(Usuario usuario) {
 		
 		StringBuilder sql = new StringBuilder();
@@ -58,5 +58,22 @@ public class UsuarioRepositorio {
 			System.out.println("Erro na inclusão de usuários");
 			e.printStackTrace();
 		}
+	}
+	
+	public void alterarUsuario(Usuario usuario) {
+		StringBuilder sql = new StringBuilder();
+		sql.append("UPDATE usuario");
+		sql.append(" SET nome = ?, email = ?, senha = ?");
+		sql.append("WHERE id=" + usuario.getId());
+		
+		try (Connection conn = this.getConnection(); PreparedStatement pst = conn.prepareStatement(sql.toString())) {
+			pst.setString(1, usuario.getNome());
+			pst.setString(2, usuario.getEmail());
+			pst.setString(3, usuario.getSenha());
+		} catch (SQLException e) {
+			System.out.println("Erro na edição de usuários");
+			e.printStackTrace();
+		}
+		
 	}
 }
