@@ -11,28 +11,28 @@
 <body>
 	<main class="container-fluid vh-100 d-flex align-items-center justify-content-center bg-dark">
 		<div class="d-flex flex-column justify-content-center align-items-center bg-white border border-5 border-secondary rounded">
-			<h1 class="fs-4">Edição de Usuário</h1>
+			<h1 class="fs-4">Alteração de Usuário</h1>
 			<form action="alterarUsuario" method="post" class="d-flex flex-column  p-5">
-				<label for="nome" class="form-label">Nome: </label> 
-				<input type="text" name="nome" id="nome" class="form-control" value="${param.nome}"> 
+				<label for="nome" class="form-label" value= "${usuario.nome}">Nome: </label> 
+				<input type="text" name="nome" id="nome" class="form-control" value="${usuario.nome}"> 
 				<label for="email" class="form-label">E-mail:</label> 
-				<input type="text" name="email" id="email" class="form-control" value="${param.email}"> 
+				<input type="text" name="email" id="email" class="form-control" value="${usuario.email}"> 
 				<label for="senha01" class="form-label">Senha:</label> 
 				<input type="password" name="senha01" id="senha01" class="form-control">
 
-				<label for="senha02" class="form-label">Confirme a sua senha:</label> 
+				<label for="senha02" class="form-label">Senha confirmada:</label> 
 				<input type="password" name="senha02" id="senha02" class="form-control">
 				
-				<input type="text" name="id" id="id" class="d-none" value="${param.usuarioId}">
+				<input type="hidden" name="id" id="id" value="${usuario.id}">
 				
 				<div class="d-flex align-items-center justify-content-evenly mt-3">
 					<input type="submit" value="Salvar" class="btn btn-success">
 					<a href="usuarioListagem.jsp" class="btn btn-danger">Voltar</a>
 				</div>
 			</form>
-			<c:if test="${not empty param.nome || not empty param.email}">
+			<c:if test="${not empty mensagem}">
 				<div class="alert alert-danger" role="alert">
-						<span>${param.nome.concat(", as senhas informadas não são iguais.")}</span>
+						<span>${mensagem}</span>
 				</div>
 			</c:if>
 		</div>

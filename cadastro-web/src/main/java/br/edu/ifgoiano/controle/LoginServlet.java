@@ -22,7 +22,7 @@ public class LoginServlet extends HttpServlet {
 		UsuarioRepositorio repositorio = new UsuarioRepositorio();
 		Usuario usuario = new Usuario();
 		
-		usuario = repositorio.buscarUsuario(email);
+		usuario = repositorio.obterUsuario(email);
 		System.out.println("Info do usu:"+usuario.getEmail());
 		
 		

@@ -15,14 +15,15 @@
 			<th>ID</th>
 			<th>Nome</th>
 			<th>E-mail</th>
-			<th>#</th>
+			<th colspan = "2">&nbsp;</th>
 		</tr>
 		<c:forEach var = "usuario" items = "${listaUsuarios}" varStatus="id">
 			<tr>
 				<td> ${usuario.id} </td>
 				<td> ${usuario.nome} </td>	
 				<td><a href="mailto:${usuario.email}"> ${usuario.email} </a> </td>
-				<td><a href = "usuarioAlterar.jsp?usuarioId=${usuario.id}" class = "btn btn-primary">Editar</a></td>
+				<td><a href = "alterarUsuario?usuarioId=${usuario.id}" class = "btn btn-success">Editar</a></td>
+				<td><a href = "excluirUsuario?usuarioId=${usuario.id}" class = "btn btn-danger">Excluir</a></td>
 			</tr>
 		</c:forEach>
 	</table>
