@@ -83,7 +83,7 @@ public class UsuarioRepositorio {
 	}
 	
 	public Usuario obterUsuario(String email) {
-		String sql = "SELECT nome, email, senha FROM usuario WHERE email LIKE = ?";
+		String sql = "SELECT nome, email, senha FROM usuario WHERE email = ?";
 		
 		try (Connection conn = this.getConnection(); PreparedStatement pst = conn.prepareStatement(sql)){
 			pst.setString(1, email);
