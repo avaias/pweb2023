@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.edu.ifgoiano.controle.entidade.Usuario;
+import br.edu.ifgoiano.negocios.UsuarioNegocios;
 import br.edu.ifgoiano.repositorio.UsuarioRepositorio;
 
 @WebServlet(urlPatterns = "/login")
@@ -18,16 +19,10 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String email = req.getParameter("email"), senha = req.getParameter("senha");
-		UsuarioRepositorio repositorio = new UsuarioRepositorio();
-		Usuario usuario = new Usuario();
-		usuario = repositorio.obterUsuario(email);
-		
-		System.out.println(email);
-		System.out.println(senha);
+		UsuarioNegocios negocios = new UsuarioNegocios();
 		String html = new String();
 		
-		
-		if(senha.equals(usuario.getSenha())) {
+		if(negocios.validaLogin(email, senha)) {
 			html = "<html><body><h1>Login realizado com sucesso!</h1></body></html>";
 		}else {
 			html = "<html><body><h1>Falha no login: email e/ou senha inválido(s)</h1></body></html>";
