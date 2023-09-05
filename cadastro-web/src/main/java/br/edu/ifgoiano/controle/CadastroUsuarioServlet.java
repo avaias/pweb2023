@@ -1,6 +1,7 @@
 package br.edu.ifgoiano.controle;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -14,32 +15,47 @@ import br.edu.ifgoiano.repositorio.UsuarioRepositorio;
 
 @WebServlet("/cadastrarUsuario")
 public class CadastroUsuarioServlet extends HttpServlet {
+	private final UsuarioRepositorio repositorio = new UsuarioRepositorio();
+	
+	private void sendErrorRedirect(HttpServletRequest req, HttpServletResponse resp, String mensagem) throws ServletException, IOException {
+		req.setAttribute("mensagem", mensagem);
+		req.getRequestDispatcher("usuarioCadastro.jsp").forward(req , resp);
+	}
+	
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//Verificar se as senhas são iguais
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		
 		String nome = req.getParameter("nome"), email = req.getParameter("email") , senha01 = req.getParameter("senha01"), senha02 = req.getParameter("senha02");
-		if(senha01.equals(senha02)) {
-			Usuario usuario = new Usuario();
-			//Redirecionar o usuário para a tela de login
-			resp.sendRedirect("index.html");
-			usuario.setNome(nome);
-			usuario.setEmail(email);
-			usuario.setSenha(senha01);
-			UsuarioRepositorio repositorio = new UsuarioRepositorio();
-			repositorio.inserirUsuario(usuario);
+		
+		/*
+		 * Verifica se todos os campos estão preenchidos, se as senhas são iguais e se o e-mail já está cadastrado. Caso a verificação falhe, o usuário retornará para a mesma página com uma mensagem de erro.
+		 */
+		
+		if(!nome.isBlank() && !email.isBlank() && !senha01.isBlank() && !senha02.isBlank()){
+			if(senha01.equals(senha02)) {
+				String repositorioUsuarioEmail = repositorio.obterUsuario(email).getEmail();					
+
+				if(repositorioUsuarioEmail.isBlank()) {
+					Usuario usuario = new Usuario();
+					resp.sendRedirect("index.html");
+					usuario.setNome(nome);
+					usuario.setEmail(email);
+					usuario.setSenha(senha01);
+					repositorio.inserirUsuario(usuario);
+				}else {
+					sendErrorRedirect(req, resp, nome.concat(", o e-mail inserido já está cadastrado. Por favor, informe outro."));
+				}
+			}else {
+				sendErrorRedirect(req, resp, nome.concat(", as senhas não são iguais."));
+			}
 		}else {
-			//Redirecionar o usuário para a mesma página de cadastro do usuário
-			req.getRequestDispatcher("usuarioCadastro.jsp").forward(req , resp);
-			
+			sendErrorRedirect(req, resp, "O preenchimento de todos os campos é obrigatório.");
 		}
 	}
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		UsuarioRepositorio repositorio = new UsuarioRepositorio();
 		req.setAttribute("listaUsuarios", repositorio.listarUsuarios());
 		req.getRequestDispatcher("usuarioListagem.jsp").forward(req, resp);
-		
 	}
 	
 	

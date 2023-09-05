@@ -104,9 +104,9 @@
 						<!-- /Logo -->
 						<h4 class="mb-2">Cadastro de usuários 🚀</h4>
 						<p class="mb-4">Realize seu cadastro aqui!</p>
-						<c:if test="${not empty param.nome || not empty param.email}">
+						<c:if test="${not empty mensagem}">
 							<div class="alert alert-danger" role="alert">
-								<span>${param.nome.concat(", as senhas informadas não são iguais.")}</span>
+								<span> ${mensagem} </span>
 							</div>
 						</c:if>
 						<form id="formAuthentication" class="mb-3"

@@ -59,19 +59,19 @@ public class UsuarioRepositorio {
 	}
 	public Usuario obterUsuario(int id) {
 		String sql = "SELECT nome, email, senha FROM usuario WHERE id = ?";
+		Usuario usuario = new Usuario();
 		
 		try (Connection conn = this.getConnection(); PreparedStatement pst = conn.prepareStatement(sql)){
 			pst.setInt(1, id);
 			ResultSet resultSet = pst.executeQuery();
 
 			while (resultSet.next()) {
-				Usuario usuario = new Usuario();
+				
 				usuario.setId(id);
 				usuario.setNome(resultSet.getString("nome"));
 				usuario.setEmail(resultSet.getString("email"));
 				usuario.setSenha(resultSet.getString("senha"));
 				
-				return usuario;
 			}
 
 		} catch (SQLException e) {
@@ -79,23 +79,23 @@ public class UsuarioRepositorio {
 			e.printStackTrace();
 		}
 		
-		throw new RuntimeException("Usuário não encontrado!");	
+		return usuario;
 	}
 	
 	public Usuario obterUsuario(String email) {
 		String sql = "SELECT nome, email, senha FROM usuario WHERE email = ?";
+		Usuario usuario = new Usuario();
 		
 		try (Connection conn = this.getConnection(); PreparedStatement pst = conn.prepareStatement(sql)){
 			pst.setString(1, email);
 			ResultSet resultSet = pst.executeQuery();
 
 			while (resultSet.next()) {
-				Usuario usuario = new Usuario();
+				
 				usuario.setNome(resultSet.getString("nome"));
 				usuario.setEmail(resultSet.getString("email"));
 				usuario.setSenha(resultSet.getString("senha"));
-				
-				return usuario;
+
 			}
 
 		} catch (SQLException e) {
@@ -103,7 +103,8 @@ public class UsuarioRepositorio {
 			e.printStackTrace();
 		}
 		
-		throw new RuntimeException("Usuário não encontrado!");
+		return usuario;
+		
 		
 	}
 	
