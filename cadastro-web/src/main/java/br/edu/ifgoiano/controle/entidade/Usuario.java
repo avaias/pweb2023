@@ -3,14 +3,9 @@ package br.edu.ifgoiano.controle.entidade;
 import java.util.Date;
 
 public class Usuario {
-	private String email = "", senha = "", nome = "";
+	private String nome = "", email = "", senha = "";
 	private Date dataNascimento;
-	private static int incremento = 1;
 	private Integer id;
-	
-	public Usuario() {
-		id = incremento++;
-	}
 	
 	public String getEmail() {
 		return email;

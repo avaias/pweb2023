@@ -18,7 +18,6 @@ public class UsuarioNegocios {
 			return "O preenchimento de todos os campos é obrigatório.";
 		}
 		
-		
 		if(!senha01.equals(senha02)) {
 			return  nome.concat(", as senhas não são iguais.");
 		}
@@ -37,5 +36,17 @@ public class UsuarioNegocios {
 		}
 		
 		return false;
+	}
+	
+	public String validaAlteracaoUsuario(String nome, String email, String senha01, String senha02) {
+		if(nome.isBlank() || email.isBlank() || senha01.isBlank() || senha02.isBlank()) {
+			return "O preenchimento de todos os campos é obrigatório.";
+		}
+		
+		if(!senha01.equals(senha02)) {
+			return nome.concat(", as senhas informadas não são iguais.");
+		}
+		
+		return "";
 	}
 }

@@ -25,7 +25,8 @@ public class LoginServlet extends HttpServlet {
 		if(negocios.validaLogin(email, senha)) {
 			html = "<html><body><h1>Login realizado com sucesso!</h1></body></html>";
 		}else {
-			html = "<html><body><h1>Falha no login: email e/ou senha inválido(s)</h1></body></html>";
+			req.setAttribute("mensagem", "Falha no login: email e/ou senha inválido(s)");
+			req.getRequestDispatcher("index.jsp").forward(req, resp);
 		}
 		
 		PrintWriter writer = resp.getWriter();

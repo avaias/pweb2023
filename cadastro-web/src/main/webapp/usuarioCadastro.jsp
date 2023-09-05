@@ -151,7 +151,7 @@
 						</form>
 
 						<p class="text-center">
-							<span>Você já tem uma conta?</span> <a href="index.html"> <span>Clique
+							<span>Você já tem uma conta?</span> <a href="index.jsp"> <span>Clique
 									aqui para voltar</span>
 							</a>
 						</p>
