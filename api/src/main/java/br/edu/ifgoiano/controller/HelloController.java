@@ -10,6 +10,6 @@ public class HelloController {
 	
 	@GetMapping
 	public String digaOla() {
-		return "Olá Mundo Spring!";
+		return "Olá Mundo Spring!!";
 	}
 }
