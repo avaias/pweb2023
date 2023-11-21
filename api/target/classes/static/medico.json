@@ -1,0 +1,16 @@
+{
+   "id":null,
+   "nome":"Hudson de Paula Romualdo",
+   "email":"hudson.romualdo@ifgoiano.edu.br",
+   "crm":946466,
+   "especialidade":"ORTOPEDIA",
+   "endereco":{
+      "id":null,
+      "logradouro":"Rua Wilson Reis",
+      "bairro":"Cristina II",
+      "complemento":"Quadra 25, lotes 2",
+      "cep":"75963215",
+      "cidade":"Trindade",
+      "estado":"Goiás"
+   }
+ }
