@@ -1,17 +1,38 @@
 package br.edu.ifgoiano.entity;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 import br.edu.ifgoiano.enumerator.TipoEspecialidade;
 
+@Entity
+@Table
 public class Medico {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column
 	private String nome;
+	@Column
 	private String email;
+	@Column
 	private String crm;
 	
+	@Enumerated
 	private TipoEspecialidade especialidade;
 	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(columnDefinition = "endereco_id", referencedColumnName = "id")
 	private Endereco endereco;
 
 	public Long getId() {

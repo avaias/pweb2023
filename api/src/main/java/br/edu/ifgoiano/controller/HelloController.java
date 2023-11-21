@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/hello")
 public class HelloController {
-	
+
 	@GetMapping
 	public String digaOla() {
-		return "Olá Mundo Spring!!";
+		return "Olá Mundo Spring!";
 	}
 }
